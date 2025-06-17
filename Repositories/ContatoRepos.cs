@@ -35,7 +35,9 @@ public class ContatoRepos : IContatoRepos
     // contrutor do botao editar
     public ContatoModels ListarPorId(int id)
     {
+#pragma warning disable CS8603 // Possible null reference return.
         return _bancoContext.Contatos.FirstOrDefault(x => x.Id == id);
+#pragma warning restore CS8603 // Possible null reference return.
     }
 
     public ContatoModels Atualizar(ContatoModels contato)
@@ -57,8 +59,9 @@ public class ContatoRepos : IContatoRepos
         ContatoModels contatoDB = ListarPorId(id);
 
         if(contatoDB == null) throw new Exception("erro ao apagar");
+        contatoDB.Id = contatoDB.Id;
 
-        _bancoContext.Contatos.Remove(contatoDB);
+        _bancoContext.Contatos.RemoveRange(contatoDB);
         _bancoContext.SaveChanges();
 
         return true;

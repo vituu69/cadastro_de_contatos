@@ -34,14 +34,15 @@ public class ContatoController : Controller
 
     }
     public IActionResult ApagarConfirmacao(int id)
-    {
+{
+    ContatoModels contato = _contatorepos.ListarPorId(id);
 
-        ContatoModels contato = _contatorepos.ListarPorId(id);
-        return View(contato);
+    return View(contato);
+}
 
-    }
 
     // get para redirecionar quando for apagado 
+    [HttpGet]
     public IActionResult Apagar(int id)
     {
         _contatorepos.Apagar(id);
