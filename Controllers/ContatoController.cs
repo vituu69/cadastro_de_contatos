@@ -27,15 +27,25 @@ public class ContatoController : Controller
         return View();
 
     }
-    public IActionResult Editar()
+    public IActionResult Editar(int id)
     {
-        return View();
+        ContatoModels contato = _contatorepos.ListarPorId(id);
+        return View(contato);
 
     }
-    public IActionResult ApagarConfirmacao()
+    public IActionResult ApagarConfirmacao(int id)
     {
-        return View();
 
+        ContatoModels contato = _contatorepos.ListarPorId(id);
+        return View(contato);
+
+    }
+
+    // get para redirecionar quando for apagado 
+    public IActionResult Apagar(int id)
+    {
+        _contatorepos.Apagar(id);
+        return RedirectToAction("index");
     }
 
     [HttpPost]
@@ -46,6 +56,13 @@ public class ContatoController : Controller
 
     }
 
+    [HttpPost]
+    public IActionResult Alterar(ContatoModels contato)
+    {
+        _contatorepos.Atualizar(contato);
+        return RedirectToAction("index");
+
+    }
 
 }
 

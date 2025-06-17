@@ -31,4 +31,36 @@ public class ContatoRepos : IContatoRepos
         _bancoContext.SaveChanges();
         return contato;
     }
+
+    // contrutor do botao editar
+    public ContatoModels ListarPorId(int id)
+    {
+        return _bancoContext.Contatos.FirstOrDefault(x => x.Id == id);
+    }
+
+    public ContatoModels Atualizar(ContatoModels contato)
+    {
+        ContatoModels contatoDB = ListarPorId(contato.Id);
+        if (contatoDB == null) throw new Exception("ouve um erro na atualizacao de contato");
+        contatoDB.Nome = contato.Nome;
+        contatoDB.Email = contato.Email;
+        contatoDB.Celular = contato.Celular;
+
+        _bancoContext.Contatos.Update(contatoDB);
+        _bancoContext.SaveChanges();
+
+        return contatoDB;
+    }
+
+    public bool Apagar(int id)
+    {
+        ContatoModels contatoDB = ListarPorId(id);
+
+        if(contatoDB == null) throw new Exception("erro ao apagar");
+
+        _bancoContext.Contatos.Remove(contatoDB);
+        _bancoContext.SaveChanges();
+
+        return true;
+    }
 }

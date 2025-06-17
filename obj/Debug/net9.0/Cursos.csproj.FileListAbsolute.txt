@@ -222,3 +222,4 @@
 /home/victor/Documentos/pasta_estudos/Cursos/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /home/victor/Documentos/pasta_estudos/Cursos/obj/Debug/net9.0/Cursos.csproj.AssemblyReference.cache
 /home/victor/Documentos/pasta_estudos/Cursos/obj/Debug/net9.0/Cursos.csproj.Up2Date
+/home/victor/Documentos/pasta_estudos/Cursos/obj/Debug/net9.0/Cursos.sourcelink.json
